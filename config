@@ -241,8 +241,8 @@ client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgco
 client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor
 
 # Run startup scripts
-exec_always --no-startup-id ~/.config/i3/display-setup.sh
-exec_always --no-startup-id ~/.config/i3/touchpad_setup.sh
+exec_always --no-startup-id ~/.config/i3/scripts/display-setup.sh
+exec_always --no-startup-id ~/.config/i3/scripts/touchpad_setup.sh
 
 # Display Wallpaper
 exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/library.jpg --bg-fill ~/Pictures/Wallpapers/plants.jpg
