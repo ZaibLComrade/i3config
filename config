@@ -211,7 +211,7 @@ set $bar-color  #523d640D
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status -c ~/.config/i3status/i3status.conf
+        status_command i3status -c ~/.config/i3/i3status.conf
 		i3bar_command i3bar --transparency
 		colors {
 			 background $bgcolor
@@ -222,6 +222,10 @@ bar {
 			 urgent_workspace        $u-bgcolor      $u-bgcolor      $text   
 		}
 }
+
+# i3-gaps
+gaps outer 1
+gaps inner 5
 
 #Allocate applications to workspaces
 for_window [class="Brave-browser"] move to workspace $ws3
@@ -236,19 +240,18 @@ client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgco
 client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
 client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor
 
-# Configuration for Elantech touchpad
-exec_always /home/$USER/.config/i3/touchpad_setup.sh
+# Run startup scripts
+exec_always --no-startup-id ~/.config/i3/display-setup.sh
+exec_always --no-startup-id ~/.config/i3/touchpad_setup.sh
 
-# Monitors configuration
-exec_always xrandr --output eDP-1 --primary --mode 1366x768 --pos 222x1080 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-2 --off
-
-#Display Wallpaper
-exec_always feh --bg-fill ~/Pictures/Wallpapers/library.jpg --bg-fill ~/Pictures/Wallpapers/plants.jpg
+# Display Wallpaper
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/library.jpg --bg-fill ~/Pictures/Wallpapers/plants.jpg
 
 # Startup programs
-exec_always kitty
-exec_always brave
-exec_always flatpak run md.obsidian.Obsidian
-exec_always kitty -T htop htop
-exec_always discord
-exec_always spotify
+exec --no-startup-id picom
+exec --no-startup-id kitty
+exec --no-startup-id brave
+exec --no-startup-id flatpak run md.obsidian.Obsidian
+exec --no-startup-id kitty -T htop htop
+exec --no-startup-id discord
+exec --no-startup-id spotify

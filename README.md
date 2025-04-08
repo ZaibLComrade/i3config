@@ -1,5 +1,1 @@
-# i3config
-# i3config
-# i3config
-# i3config
-# i3config
+# i3 Config files

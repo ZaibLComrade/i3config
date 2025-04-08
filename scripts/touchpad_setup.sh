@@ -1,4 +1,3 @@
-# ~/.config/i3/touchpad_setup.sh
 #!/bin/bash
 sleep 1
 DEVICE="ETPS/2 Elantech Touchpad"
