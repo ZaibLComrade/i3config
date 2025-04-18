@@ -1,5 +1,4 @@
 #!/bin/bash
-sleep 1
 DEVICE="ETPS/2 Elantech Touchpad"
 ID=$(xinput list --id-only "$DEVICE")
 [ -n "$ID" ] || { echo "Touchpad not found" >> /tmp/touchpad.log; exit 1; }

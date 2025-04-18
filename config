@@ -40,8 +40,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use brightnessctl to adjust brightness.
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/scripts/adjust-brightness.sh up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/adjust-brightness.sh down
 
 # Superkey
 set $mod Mod4
@@ -140,6 +140,18 @@ set $ws8 "8  Spotify"
 set $ws9 "9   Discord"
 set $ws10 "10  Exp"
 
+# set $ws1 "1 IDE"
+# set $ws2 "2 Terminal"
+# set $ws3 "3 Browser"
+# set $ws4 "4 Book"
+# set $ws5 "5 Notes"
+# set $ws6 "6 Others"
+# set $ws7 "7 Monitor"
+# set $ws8 "8 Spotify"
+# set $ws9 "9 Discord"
+# set $ws10 "10 Exp"
+
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -223,11 +235,14 @@ bar {
 		}
 }
 
+# polybar
+# exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 # i3-gaps
 gaps outer 1
 gaps inner 5
 
-#Allocate applications to workspaces
+# Allocate applications to workspaces
 for_window [class="Brave-browser"] move to workspace $ws3
 for_window [class="obsidian"] move to workspace $ws5
 for_window [title="htop"] move to workspace $ws7
@@ -240,15 +255,20 @@ client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgco
 client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
 client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor
 
+# lxsession
+exec --no-startup-id lxsession
+
 # Run startup scripts
 exec_always --no-startup-id ~/.config/i3/scripts/display-setup.sh
 exec_always --no-startup-id ~/.config/i3/scripts/touchpad_setup.sh
+exec_always --no-startup-id ~/.config/i3/scripts/animated-wallpaper.sh
 
 # Display Wallpaper
-exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/library.jpg --bg-fill ~/Pictures/Wallpapers/plants.jpg
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/plants.jpg
 
 # Startup programs
-exec --no-startup-id picom
+exec_always --no-startup-id picom
+exec --no-startup-id pa-applet
 exec --no-startup-id kitty
 exec --no-startup-id brave
 exec --no-startup-id flatpak run md.obsidian.Obsidian
